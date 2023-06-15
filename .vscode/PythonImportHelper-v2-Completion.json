@@ -1,0 +1,307 @@
+[
+    {
+        "label": "urllib3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib3",
+        "description": "urllib3",
+        "detail": "urllib3",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "PokeDex",
+        "importPath": "GUI",
+        "description": "GUI",
+        "isExtraImport": true,
+        "detail": "GUI",
+        "documentation": {}
+    },
+    {
+        "label": "requests,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests.",
+        "description": "requests.",
+        "detail": "requests.",
+        "documentation": {}
+    },
+    {
+        "label": "lxml.html",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "lxml.html",
+        "description": "lxml.html",
+        "detail": "lxml.html",
+        "documentation": {}
+    },
+    {
+        "label": "cycle",
+        "importPath": "itertools",
+        "description": "itertools",
+        "isExtraImport": true,
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "islice",
+        "importPath": "itertools",
+        "description": "itertools",
+        "isExtraImport": true,
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "colors",
+        "importPath": "matplotlib",
+        "description": "matplotlib",
+        "isExtraImport": true,
+        "detail": "matplotlib",
+        "documentation": {}
+    },
+    {
+        "label": "data_cleaning",
+        "importPath": "data_cleaning",
+        "description": "data_cleaning",
+        "isExtraImport": true,
+        "detail": "data_cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "statistical_analysis",
+        "importPath": "statistical_analysis",
+        "description": "statistical_analysis",
+        "isExtraImport": true,
+        "detail": "statistical_analysis",
+        "documentation": {}
+    },
+    {
+        "label": "scatter_matrix",
+        "importPath": "pandas.plotting",
+        "description": "pandas.plotting",
+        "isExtraImport": true,
+        "detail": "pandas.plotting",
+        "documentation": {}
+    },
+    {
+        "label": "data_cleaning",
+        "kind": 6,
+        "importPath": "data_cleaning",
+        "description": "data_cleaning",
+        "peekOfCode": "class data_cleaning:\n    def str_bracket(word):\n        '''Add brackets around second term'''\n        word_bychar = [char for char in word]\n        for char_ind in range(1, len(word_bychar)):\n            if word_bychar[char_ind].isupper():\n                word_bychar[char_ind] = ' ' + word_bychar[char_ind]\n        fin_list = ''.join(word_bychar).split(' ')\n        length = len(fin_list)\n        if length>1:",
+        "detail": "data_cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "PokeDex",
+        "kind": 6,
+        "importPath": "GUI",
+        "description": "GUI",
+        "peekOfCode": "class PokeDex(QtGui.QWindow):\n    def __init__(self):\n      super(PokeDex, self).__init__()\n      self.initUI()\n    def initUI(self):\n        self.grid = QtGui.QPageLayout()\n        self.setLayout(self.grid)\n        self.df = pd.read_json('PokemonData.json')\n        self.df = self.df.set_index(['#'])\n        self.dropdown = QtGui.QComboBox(self)",
+        "detail": "GUI",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    app = QtGui.QGuiApplication(sys.argv)\n    app.aboutToQuit.connect(app.deleteLater)\n    gui = PokeDex()\n    sys.exit(app.exec_())\nif __name__ == '__main__':\n    main()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "url",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "url = 'http://pokemondb.net/pokedex/all'\npage = requests.get(url)\ndocument = lh.fromstring(page.content)\ntr_elements = document.xpath('//tr')\ncolumns = []; i = 0\nfor header in tr_elements[0]:\n    i += 1\n    name = header.text_content()\n    # print('%d: \"%s\"' %(i, name))\n    columns.append((name,[]))",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "page",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "page = requests.get(url)\ndocument = lh.fromstring(page.content)\ntr_elements = document.xpath('//tr')\ncolumns = []; i = 0\nfor header in tr_elements[0]:\n    i += 1\n    name = header.text_content()\n    # print('%d: \"%s\"' %(i, name))\n    columns.append((name,[]))\nfor row_index in range(1, len(tr_elements)):",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "document",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "document = lh.fromstring(page.content)\ntr_elements = document.xpath('//tr')\ncolumns = []; i = 0\nfor header in tr_elements[0]:\n    i += 1\n    name = header.text_content()\n    # print('%d: \"%s\"' %(i, name))\n    columns.append((name,[]))\nfor row_index in range(1, len(tr_elements)):\n    row = tr_elements[row_index]",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "tr_elements",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "tr_elements = document.xpath('//tr')\ncolumns = []; i = 0\nfor header in tr_elements[0]:\n    i += 1\n    name = header.text_content()\n    # print('%d: \"%s\"' %(i, name))\n    columns.append((name,[]))\nfor row_index in range(1, len(tr_elements)):\n    row = tr_elements[row_index]\n    if len(row) != 10:",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "columns",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "columns = []; i = 0\nfor header in tr_elements[0]:\n    i += 1\n    name = header.text_content()\n    # print('%d: \"%s\"' %(i, name))\n    columns.append((name,[]))\nfor row_index in range(1, len(tr_elements)):\n    row = tr_elements[row_index]\n    if len(row) != 10:\n        break",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "Dict = {title:column for (title, column) in columns}\ndf = pd.DataFrame(Dict)\ndf['Name'] = df['Name'].apply(data_cleaning.str_bracket)\ndf['Type'] = df['Type'].apply(data_cleaning.str_break)\ndf.to_json('PokemonData.json')\nprint(df.head())\nstats=['Attack', 'Defense','HP', 'Sp. Atk','Sp. Def','Speed','Total']\nprint(statistical_analysis.max_stats(df, stats))\nprint(statistical_analysis.min_stats(df, stats))\nfrom pandas.plotting import scatter_matrix",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "df = pd.DataFrame(Dict)\ndf['Name'] = df['Name'].apply(data_cleaning.str_bracket)\ndf['Type'] = df['Type'].apply(data_cleaning.str_break)\ndf.to_json('PokemonData.json')\nprint(df.head())\nstats=['Attack', 'Defense','HP', 'Sp. Atk','Sp. Def','Speed','Total']\nprint(statistical_analysis.max_stats(df, stats))\nprint(statistical_analysis.min_stats(df, stats))\nfrom pandas.plotting import scatter_matrix\nscatter_matrix(df[stats], alpha=0.2, figsize=(10, 10), diagonal='kde')",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "df['Name']",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "df['Name'] = df['Name'].apply(data_cleaning.str_bracket)\ndf['Type'] = df['Type'].apply(data_cleaning.str_break)\ndf.to_json('PokemonData.json')\nprint(df.head())\nstats=['Attack', 'Defense','HP', 'Sp. Atk','Sp. Def','Speed','Total']\nprint(statistical_analysis.max_stats(df, stats))\nprint(statistical_analysis.min_stats(df, stats))\nfrom pandas.plotting import scatter_matrix\nscatter_matrix(df[stats], alpha=0.2, figsize=(10, 10), diagonal='kde')\nnew_dict = {}",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "df['Type']",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "df['Type'] = df['Type'].apply(data_cleaning.str_break)\ndf.to_json('PokemonData.json')\nprint(df.head())\nstats=['Attack', 'Defense','HP', 'Sp. Atk','Sp. Def','Speed','Total']\nprint(statistical_analysis.max_stats(df, stats))\nprint(statistical_analysis.min_stats(df, stats))\nfrom pandas.plotting import scatter_matrix\nscatter_matrix(df[stats], alpha=0.2, figsize=(10, 10), diagonal='kde')\nnew_dict = {}\nstats_col = [\"#\", \"Name\", \"Total\", \"HP\", \"Attack\", \"Defense\", \"Sp. Atk\", \"Sp. Def\", \"Speed\"]",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "new_dict",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "new_dict = {}\nstats_col = [\"#\", \"Name\", \"Total\", \"HP\", \"Attack\", \"Defense\", \"Sp. Atk\", \"Sp. Def\", \"Speed\"]\nDict['Type'] = df['Type'].values\nfor col in stats_col:\n    new_dict[col] = []\n    new_dict['Type'] = []\nfor row in range(len(Dict['#'])):\n    for t in Dict['Type'][row]:\n        for col in stats_col:\n            new_dict[col].append(Dict[col][row])",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "stats_col",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "stats_col = [\"#\", \"Name\", \"Total\", \"HP\", \"Attack\", \"Defense\", \"Sp. Atk\", \"Sp. Def\", \"Speed\"]\nDict['Type'] = df['Type'].values\nfor col in stats_col:\n    new_dict[col] = []\n    new_dict['Type'] = []\nfor row in range(len(Dict['#'])):\n    for t in Dict['Type'][row]:\n        for col in stats_col:\n            new_dict[col].append(Dict[col][row])\n        new_dict['Type'].append(t)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "Dict['Type']",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "Dict['Type'] = df['Type'].values\nfor col in stats_col:\n    new_dict[col] = []\n    new_dict['Type'] = []\nfor row in range(len(Dict['#'])):\n    for t in Dict['Type'][row]:\n        for col in stats_col:\n            new_dict[col].append(Dict[col][row])\n        new_dict['Type'].append(t)\nnew_df = pd.DataFrame(new_dict)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "new_df",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "new_df = pd.DataFrame(new_dict)\nprint(new_df.head())\ntypes = new_df['Type'].unique()\ncolors_list = list(six.iteritems(colors.cnames))\ncolors_list = list(islice(cycle(colors_list), None, len(new_df)))\nstatistical_analysis.barh_stats(new_df, types, colors_list)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "types",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "types = new_df['Type'].unique()\ncolors_list = list(six.iteritems(colors.cnames))\ncolors_list = list(islice(cycle(colors_list), None, len(new_df)))\nstatistical_analysis.barh_stats(new_df, types, colors_list)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "colors_list",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "colors_list = list(six.iteritems(colors.cnames))\ncolors_list = list(islice(cycle(colors_list), None, len(new_df)))\nstatistical_analysis.barh_stats(new_df, types, colors_list)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "colors_list",
+        "kind": 5,
+        "importPath": "pokedex",
+        "description": "pokedex",
+        "peekOfCode": "colors_list = list(islice(cycle(colors_list), None, len(new_df)))\nstatistical_analysis.barh_stats(new_df, types, colors_list)",
+        "detail": "pokedex",
+        "documentation": {}
+    },
+    {
+        "label": "statistical_analysis",
+        "kind": 6,
+        "importPath": "statistical_analysis",
+        "description": "statistical_analysis",
+        "peekOfCode": "class statistical_analysis:\n    def max_stats(df, col_list):\n        message = ''\n        for col in col_list:\n            stat = df[col].max()\n            name = df[df[col] == df[col].max()][\"Name\"].values[0]\n            message += name + ' has the greatest ' +  col + ' stat of ' + str(stat) + '\\n'\n        return message\n    def min_stats(df, col_list):\n        message = ''",
+        "detail": "statistical_analysis",
+        "documentation": {}
+    }
+]

@@ -1,4 +1,4 @@
-import sys, urllib3, requests
+import urllib3
 import pandas as pd
 
 from PyQt5 import QtGui, QtCore
@@ -9,7 +9,7 @@ class PokeDex(QtGui.QWindow):
       self.initUI()
       
     def initUI(self):
-        self.grid = QtGui.QGridLayout()
+        self.grid = QtGui.QPageLayout()
         self.setLayout(self.grid)
         
         self.df = pd.read_json('PokemonData.json')
@@ -69,14 +69,5 @@ class PokeDex(QtGui.QWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
         
-    def main():
-        app = QtGui.QGuiApplication(sys.argv)
-        app.aboutToQuit.connect(app.deleteLater)
-        
-        gui = PokeDex()
-        sys.exit(app.exec_())
 
-
-    if __name__ == '__main__':
-        main()
         
