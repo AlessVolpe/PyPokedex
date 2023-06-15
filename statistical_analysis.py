@@ -19,6 +19,7 @@ class statistical_analysis:
         return message
     
     def barh_stats(df, types, colors):
+        import pandas as pd
         import matplotlib.pyplot as plt
         
         i = 0
@@ -29,11 +30,11 @@ class statistical_analysis:
             i+=1   
             plt.subplot(121)
             plt.title('Mean')
-            df[df['Type']==t].mean().plot(kind='barh', color = colors[i])
+            pd.to_numeric(df[df['Type'] == t]).mean(axis = 0).plot(kind='barh', color = colors[i])
             
             plt.subplot(122)
             plt.title('Standard Deviation')
-            df[df['Type']==t].std().plot(kind='barh', color = colors[i])
+            pd.to_numeric(df[df['Type'] == t]).std().plot(kind='barh', color = colors[i])
         
         #Add list of Pokemon Type to legend
         plt.legend(types, bbox_to_anchor=(1.3, 1.1))

@@ -1,11 +1,11 @@
 import sys
 
-from PyQt5 import QtGui
+from PyQt5.QtWidgets import QApplication
 
 from GUI import PokeDex
 
 def main():
-    app = QtGui.QGuiApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.aboutToQuit.connect(app.deleteLater)
     
     gui = PokeDex()

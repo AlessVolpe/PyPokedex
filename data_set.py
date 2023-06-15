@@ -8,7 +8,7 @@ from matplotlib import colors
 from data_cleaning import data_cleaning
 from statistical_analysis import statistical_analysis
 
-url = 'http://pokemondb.net/pokedex/all'
+url = 'https://pokemondb.net/pokedex/all'
 
 page = requests.get(url)
 document = lh.fromstring(page.content)
@@ -77,4 +77,4 @@ types = new_df['Type'].unique()
 colors_list = list(six.iteritems(colors.cnames))
 colors_list = list(islice(cycle(colors_list), None, len(new_df)))
 
-statistical_analysis.barh_stats(new_df, types, colors_list)
+# statistical_analysis.barh_stats(new_df, types, colors_list)

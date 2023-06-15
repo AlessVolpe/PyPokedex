@@ -1,33 +1,36 @@
-import urllib3
+import urllib.request
 import pandas as pd
 
+from urllib.request import HTTPError, Request
 from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QComboBox, QLabel, QDesktopWidget
+from data_set import url
 
-class PokeDex(QtGui.QWindow):
+class PokeDex(QWidget):
     def __init__(self):
       super(PokeDex, self).__init__()
       self.initUI()
       
     def initUI(self):
-        self.grid = QtGui.QPageLayout()
+        self.grid = QGridLayout()
         self.setLayout(self.grid)
         
         self.df = pd.read_json('PokemonData.json')
         self.df = self.df.set_index(['#'])
         
-        self.dropdown = QtGui.QComboBox(self)
+        self.dropdown = QComboBox(self)
         self.names = self.df['Name'].values
         self.dropdown.addItems(self.names)
         self.grid.addWidget(self.dropdown, 0, 0, 1, 1)
         
-        self.btn = QtGui.QPushButton('Search', self)
+        self.btn = QPushButton('Search', self)
         self.btn.clicked.connect(self.runSearch)
         self.grid.addWidget(self.btn, 0, 1, 1, 1)
         
-        self.img = QtGui.QLabel(self)
+        self.img = QLabel(self)
         self.grid.addWidget(self.img, 1, 1, 1, 1)
         
-        self.label = QtGui.QLabel(self)
+        self.label = QLabel(self)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText('\nName:\n\nType:\n\nHP:\n\nAttack\n\nSp. Attack\n\n Defense:\n\nSp. Defense:\n\nSpeed:\n\nTotal:')
         self.label.setAlignment(QtCore.Qt.AlignLeft)
@@ -40,14 +43,25 @@ class PokeDex(QtGui.QWindow):
         
     def runSearch(self):
         index = self.dropdown.currentIndex()
-        val= self.names[index]
+        val = self.names[index]
         cond = self.df['Name']== val
         
-        base = 'http://img.pokemondb.net/artwork/'
+        base = 'https://img.pokemondb.net/artwork/'
         img_url = base + val.lower() + '.jpg'
-        data = urllib3.urlopen(img_url).read()
+        req = Request(url = img_url.replace(' ', ''), headers = {'User-Agent': 'Mozilla/5.0'})
+        try:
+            data = urllib.request.urlopen(req).read()
+        except HTTPError as e:
+            if e.code != 404:
+                raise HTTPError(e.url, e.code, "Unexpected HTTP Error", e.headers, e.fp)
+            pass
+        
         image = QtGui.QImage()
-        image.loadFromData(data)
+        try:
+            image.loadFromData(data)
+        except:
+            image.load('image_not_available', format = 'png')
+            self.img.setFixedSize(360, 314)   
         self.img.setPixmap(QtGui.QPixmap(image))
 
         name = 'Name:\t\t\t'+val+'\n\n'
@@ -65,7 +79,7 @@ class PokeDex(QtGui.QWindow):
     
     def center(self):
         qr = self.frameGeometry()
-        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
         
